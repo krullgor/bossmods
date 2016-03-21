@@ -31,6 +31,11 @@ LVBM.AddOns.Geddon = {
 		["CHAT_MSG_SPELL_PERIODIC_SELF_DAMAGE"] = true,
 		["CHAT_MSG_SPELL_PERIODIC_CREATURE_BUFFS"] = true,
 	},	
+	["OnCombatStart"] = function(delay)
+		LVBM.Schedule(25 - delay, "LVBM.AddOns.Geddon.OnEvent", "InfernoWarning", 5);
+		LVBM.Schedule(30 - delay, "LVBM.AddOns.Geddon.OnEvent", "Inferno");
+		LVBM.StartStatusBarTimer(30 - delay, "Inferno in");
+	end,
 	["OnCombatEnd"] = function()
 		if( LVBM.AddOns.Geddon.Options.SetIcon ) then
 			LVBM.CleanUp();
@@ -46,6 +51,7 @@ LVBM.AddOns.Geddon = {
 			if ( Name and Type ) then
 				if ( Name == LVBM_YOU and Type == LVBM_ARE ) then
 					Name = UnitName("player");
+					PlaySoundFile("Interface\\AddOns\\La_Vendetta_Boss_Mods\\Sounds\\alarmbuzzer.ogg", "Master");
 					LVBM.AddSpecialWarning(LVBM_BARON_BOMB_WHISPER);					
 				else
 					if( LVBM.AddOns.Geddon.Options.Whisper ) then
@@ -68,11 +74,16 @@ LVBM.AddOns.Geddon = {
 					end	
 				end
 			end
-		elseif ( event == "CHAT_MSG_SPELL_PERIODIC_CREATURE_BUFFS" ) then
-			if arg1 == LVBM_BARON_INFERNO then
-				LVBM.Announce(LVBM_BARON_INFERNO_WARNING);
-				LVBM.StartStatusBarTimer(8, "Inferno");
-			end
+		elseif ( event == "Inferno" ) then
+			LVBM.Announce(LVBM_BARON_INFERNO_WARNING);
+			LVBM.StartStatusBarTimer(8, "Inferno");
+			LVBM.Schedule(8, "LVBM.AddOns.Geddon.OnEvent", "InfernoDone");
+		elseif ( event == "InfernoWarning" ) then
+			LVBM.Announce(string.format(LVBM_BARON_INFERNO_HEADSUP, arg1));
+		elseif ( event == "InfernoDone" ) then
+			LVBM.Schedule(17, "LVBM.AddOns.Geddon.OnEvent", "InfernoWarning", 5);
+			LVBM.Schedule(22, "LVBM.AddOns.Geddon.OnEvent", "Inferno");
+			LVBM.StartStatusBarTimer(22, "Inferno in");
 		end
 	end,		
 };

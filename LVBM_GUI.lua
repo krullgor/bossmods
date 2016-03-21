@@ -329,12 +329,35 @@ function LVBM_Pull_Announce(msg, announce)
 	end
 end
 
+function getDistanceBetween(uId, x, y)
+	-- alternative arguments: uId, uId2
+	if type(x) == "string" then
+		local uId2 = x
+		x, y = GetPlayerMapPosition(uId2)
+		if not x then
+			print("getDistanceBetween failed for: " .. uId .. " (" .. UnitExists(uId) .. ") and " .. uId2 .. " (" .. UnitExists(uId2) .. ")")
+			return
+		end
+	end
+	local startX, startY = GetPlayerMapPosition(uId)
+	local dX = startX - x
+	local dY = startY - y
+	return (dX * dX + dY * dY) ^ 0.5
+end
+
+function LVBM_Gui_GetDistance(...)
+	message(getDistanceBetween(args))
+end
+
 function LVBMBossModFrame_OnEvent(event)
 	if( event == "PLAYER_LOGIN" ) then
 
 		SLASH_LVDISTANCE1 = "/distance";	-- EN
 		SLASH_LVDISTANCE2 = "/abstand";		-- DE
 		SlashCmdList["LVDISTANCE"] = LVBM_Gui_DistanceFrame;
+		
+		SLASH_LVDIST = "/dist";
+		SlashCmdList["LVDIST"] = LVBM_Gui_GetDistance;
 
 		SLASH_LVPULL1 = "/pull";
 		SlashCmdList["LVPULL"] = LVBM_Pull_Announce; 

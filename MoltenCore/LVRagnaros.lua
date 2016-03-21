@@ -25,6 +25,10 @@ LVBM.AddOns.Ragnaros = {
 		LVBM.Schedule(150 - delay, "LVBM.AddOns.Ragnaros.OnEvent", "SubmergeWarning", 30);
 		LVBM.Schedule(165 - delay, "LVBM.AddOns.Ragnaros.OnEvent", "SubmergeWarning", 15);
 		LVBM.StartStatusBarTimer(180 - delay, "Submerge");
+		
+		--Melee Knockback
+		LVBM.Schedule(25 - delay, "LVBM.AddOns.Ragnaros.OnEvent", "WrathWarning", 5);
+		LVBM.StartStatusBarTimer(30 - delay, "Wrath of Ragnaros");
 	end,
 	["OnCombatEnd"] = function()
 		LVBM.AddOns.Ragnaros.Submerged = false;

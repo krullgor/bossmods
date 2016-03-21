@@ -204,7 +204,7 @@ LVBM.Bosses = {
 				},
 			},
 			["realName"] = LVBM_THREEBUGS_REAL_NAME,
-			["delay"] = 10,
+			["delay"] = 5,
 			["BossMods"] = {
 				"ThreeBugs",
 			},
@@ -345,7 +345,7 @@ LVBM.Bosses = {
 		["LUCIFRON"] = {
 			["startMethod"] = "COMBAT",
 			["name"] = LVBM_LUCIFRON_NAME,
-			["delay"] = 5,
+			["delay"] = 2,
 			["BossMods"] = {
 				"Lucifron",
 			},
@@ -384,7 +384,7 @@ LVBM.Bosses = {
 		["SHAZZRAH"] = {
 			["startMethod"] = "COMBAT",
 			["name"] = LVBM_SHAZZRAH_NAME,
-			["delay"] = 5,
+			["delay"] = 0,
 			["BossMods"] = {
 				"Shazzrah",
 			},

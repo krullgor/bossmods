@@ -13,12 +13,14 @@ LVBM.AddOns.Fankriss = {
 	},	
 	["Events"] = {
 		["CHAT_MSG_SPELL_CREATURE_VS_CREATURE_BUFF"] = true,
-	},	
-
+	},
 	["OnEvent"] = function(event, arg1)
 		if (event == "CHAT_MSG_SPELL_CREATURE_VS_CREATURE_BUFF") then
 			if arg1 == LVBM_FANKRISS_WORM_SPAWNED then
 				LVBM.Announce(LVBM_FANKRISS_SPAWN_WARNING);
+				if(not LVBM.GetStatusBarTimerTimeLeft("Next Worm")) then
+					LVBM.StartStatusBarTimer(20, "Next Worm");
+				end
 			end
 		end
 	end,

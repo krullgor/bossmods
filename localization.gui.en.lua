@@ -142,6 +142,9 @@ LVBMGUI_ABOUTTEXT_18	= " ";
 LVBMGUI_ABOUTTEXT_19	= " ";
 LVBMGUI_ABOUTTEXT_20	= "If you have a suggestion or a bug report, leave a comment at www.curse-gaming.com or post in our forums at www.deadlyminds.net";
 
+LVBMGUI_RUNES_FRAME_TITLE 			= "Runes";
+LVBMGUI_RUNES_FRAME_TEXT			= "Not dowsed:";
+
 -- Translations added v1.05
 LVBMGUI_DISTANCE_FRAME_TITLE		= "Distance";
 LVBMGUI_DISTANCE_FRAME_TEXT		= "Too near:";

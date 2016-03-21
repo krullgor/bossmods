@@ -1,8 +1,8 @@
 LVBM.AddOns.Nefarian = {
 	["Name"] = LVBM_NEFARIAN_NAME,
 	["Abbreviation1"] = "nef",
-	["Version"] = "1.0",
-	["Author"] = "Tandanu",
+	["Version"] = "1.1",
+	["Author"] = "Krullgor",
 	["Description"] = LVBM_NEFARIAN_DESCRIPTION,
 	["Instance"] = LVBM_BWL,
 	["GUITab"] = LVBMGUI_TAB_BWL,
@@ -12,6 +12,7 @@ LVBM.AddOns.Nefarian = {
 		["Announce"] = false,
 		["BlockHeals"] = true,
 		["UnequipBow"] = true,
+		["SyncKills"] = true,
 	},
 	["DropdownMenu"] = {
 		[1] = {
@@ -23,8 +24,16 @@ LVBM.AddOns.Nefarian = {
 			["variable"] = "LVBM.AddOns.Nefarian.Options.UnequipBow",
 			["text"] = LVBM_NEFARIAN_UNEQUIP_BOW,
 			["func"] = function() LVBM.AddOns.Nefarian.Options.UnequipBow = not LVBM.AddOns.Nefarian.Options.UnequipBow; end,
-		}
+		},
+		[3] = {
+			["variable"] = "LVBM.AddOns.Nefarian.Options.SyncKills",
+			["text"] = LVBM_NEFARIAN_SYNCKILLS_INFO,
+			["func"] = function() LVBM.AddOns.Nefarian.Options.SyncKills = not LVBM.AddOns.Nefarian.Options.SyncKills; end,
+		},
 	},
+	["DrakonidsTotal"] = 42,
+	["DrakonidKillCount"] = 0,
+	["LastCountMsg"] = 0,
 	["PriestCall"] = false,
 	["BowBag"]	= 0,
 	["BowSlot"] = 0,
@@ -32,10 +41,38 @@ LVBM.AddOns.Nefarian = {
 	["Events"] = {
 		["CHAT_MSG_MONSTER_YELL"] = true,
 		["CHAT_MSG_SPELL_CREATURE_VS_CREATURE_DAMAGE"] = true,
-	},	
-
+		["CHAT_MSG_ADDON"] = true,
+		["CHAT_MSG_COMBAT_HOSTILE_DEATH"] = true,
+		["CHAT_MSG_SPELL_PERIODIC_FRIENDLYPLAYER_DAMAGE"] = true,
+		["CHAT_MSG_SPELL_PERIODIC_PARTY_DAMAGE"] = true,
+		["CHAT_MSG_SPELL_PERIODIC_SELF_DAMAGE"] = true,
+	},
+	["OnCombatStart"] = function(delay)
+		LVBM.AddOns.Nefarian.DrakonidKillCount = 0;
+	end,
+	["OnCombatEnd"] = function()
+		LVBM.AddOns.Nefarian.DrakonidKillCount = 0;
+	end,
 	["OnEvent"] = function(event, arg1)
-		if event == "CHAT_MSG_SPELL_CREATURE_VS_CREATURE_DAMAGE" then
+		-- maybe add shadow flame timer? 12sec in cmangos
+		if LVBM.AddOns.Nefarian.Options.SyncKills and event == "CHAT_MSG_ADDON" and arg1 == "LVBM_NEF_P1_KILLCOUNT" and arg2 and arg3 == "RAID" then
+			local killcount = tonumber(arg2);
+			if ( killcount and killcount > LVBM.AddOns.Nefarian.DrakonidKillCount ) then
+				LVBM.AddOns.Nefarian.DrakonidKillCount = killcount;
+			end
+		elseif event == "CHAT_MSG_COMBAT_HOSTILE_DEATH" then
+			if string.find(arg1, "Drakonid") then
+				LVBM.AddOns.Nefarian.DrakonidKillCount = LVBM.AddOns.Nefarian.DrakonidKillCount + 1;
+				if(LVBM.AddOns.Nefarian.Options.SyncKills) then
+					SendAddonMessage("LVBM_NEF_P1_KILLCOUNT", LVBM.AddOns.Nefarian.DrakonidKillCount);
+				end
+				
+				if (math.mod(LVBM.AddOns.Nefarian.DrakonidKillCount,5) == 0) then
+					LVBM.AddMsg( string.format("*** %d Drakonids down ***", LVBM.AddOns.Nefarian.DrakonidKillCount) );
+				end
+			end
+
+		elseif event == "CHAT_MSG_SPELL_CREATURE_VS_CREATURE_DAMAGE" then
 			if arg1 == LVBM_NEFARIAN_CAST_SHADOW_FLAME then
 				LVBM.Announce(LVBM_SHADOW_FLAME_WARNING);
 				LVBM.StartStatusBarTimer(2, "Shadow Flame Cast");
@@ -47,19 +84,20 @@ LVBM.AddOns.Nefarian = {
 			if arg1 == LVBM_NEFARIAN_YELL_PHASE2 then
 				LVBM.Announce(LVBM_NEFARIAN_PHASE2_WARNING);
 				LVBM.StartStatusBarTimer(15, "Phase 2");
+				LVBM.Schedule(15, "LVBM.AddOns.Nefarian.OnEvent", "firstfear")
 			elseif arg1 == LVBM_NEFARIAN_YELL_PHASE3 then
 				LVBM.Announce("*** Phase 3 - AoE ***");
 			elseif (string.find(arg1, LVBM_NEFARIAN_YELL_SHAMANS)) then
 				LVBM.Announce(LVBM_NEFARIAN_SHAMAN_WARNING);
 				LVBM.Schedule(27, "LVBM.AddOns.Nefarian.OnEvent", "ClassCallWarning", 5)
 				LVBM.EndStatusBarTimer("Class call CD");
-				LVBM.StartStatusBarTimer(30, "Class call CD");
+				LVBM.StartStatusBarTimer(30, "Shaman call");
 				LVBM.AddOns.Nefarian.OnEvent("EquipBow");
 			elseif arg1 == LVBM_NEFARIAN_YELL_PALAS then
 				LVBM.Announce(LVBM_NEFARIAN_PALA_WARNING);
 				LVBM.Schedule(27, "LVBM.AddOns.Nefarian.OnEvent", "ClassCallWarning", 5)
 				LVBM.EndStatusBarTimer("Class call CD");
-				LVBM.StartStatusBarTimer(30, "Class call CD");
+				LVBM.StartStatusBarTimer(30, "Paladin call");
 				LVBM.AddOns.Nefarian.OnEvent("EquipBow");
 			elseif arg1 == LVBM_NEFARIAN_YELL_DRUIDS then
 				LVBM.Announce(LVBM_NEFARIAN_DRUID_WARNING);
@@ -94,13 +132,13 @@ LVBM.AddOns.Nefarian = {
 				LVBM.Announce(LVBM_NEFARIAN_WARLOCK_WARNING);
 				LVBM.Schedule(27, "LVBM.AddOns.Nefarian.OnEvent", "ClassCallWarning", 5)
 				LVBM.EndStatusBarTimer("Class call CD");
-				LVBM.StartStatusBarTimer(30, "Class call CD");
+				LVBM.StartStatusBarTimer(30, "Warlock call");
 				LVBM.AddOns.Nefarian.OnEvent("EquipBow");
 			elseif arg1 == LVBM_NEFARIAN_YELL_HUNTERS then
 				LVBM.Announce(LVBM_NEFARIAN_HUNTER_WARNING);
 				LVBM.Schedule(27, "LVBM.AddOns.Nefarian.OnEvent", "ClassCallWarning", 5)
 				LVBM.EndStatusBarTimer("Class call CD");
-				LVBM.StartStatusBarTimer(30, "Class call CD");
+				LVBM.StartStatusBarTimer(30, "Hunter call");
 				LVBM.AddOns.Nefarian.OnEvent("EquipBow");
 			elseif arg1 == LVBM_NEFARIAN_YELL_MAGES then
 				LVBM.Announce(LVBM_NEFARIAN_MAGE_WARNING);
@@ -161,6 +199,16 @@ LVBM.AddOns.Nefarian = {
 			end
 		elseif event == "ResetPriestCall" then
 			LVBM.AddOns.Nefarian.PriestCall = false;
+		end
+		if (event == "firstfear"
+		 or event == "CHAT_MSG_SPELL_PERIODIC_FRIENDLYPLAYER_DAMAGE"
+		 or event == "CHAT_MSG_SPELL_PERIODIC_PARTY_DAMAGE"
+		 or event == "CHAT_MSG_SPELL_PERIODIC_SELF_DAMAGE") then
+			local _, _, sArg1, sArg2 = string.find(arg1, LVBM_NEFARIAN_FEAR_EXPR);
+			if( sArg1 ~= nil and sArg2 ~= nil ) then
+				LVBM.EndStatusBarTimer("Nefarian Fear");
+				LVBM.StartStatusBarTimer(30, "Nefarian Fear");
+			end
 		end
 	end,
 	["Hooks"] = {

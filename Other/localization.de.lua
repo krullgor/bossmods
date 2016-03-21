@@ -13,12 +13,17 @@ if (GetLocale()=="deDE") then
 
 	-- LVOnyxia
 	LVBM_ONYXIA_INFO			= "Zeigt eine Warnung f\195\188r Phase 2 und 3 und Onyxia den Tiefen Atem macht.";
-	LVBM_ONYXIA_BREATH_EMOTE	 	= "%s atmet tief ein...";
+	LVBM_ONYXIA_PHASE1_YELL			= "Was für ein Zufall. Normalerweise muss ich meinen Unterschlupf verlassen, um etwas zu essen.";
+	LVBM_ONYXIA_BREATH_EMOTE	 	= "holt tief Luft...";
 	LVBM_ONYXIA_BREATH_ANNOUNCE		= "*** Tiefer Atem - Deep Breath ***"
-	LVBM_ONYXIA_PHASE2_YELL			= "Diese sinnlose Anstrengung langweilt mich. Ich werde Euch alle von oben verbrennen!";
+	LVBM_ONYXIA_PHASE2_YELL			= "Ich werde Euch alle von oben verbrennen!";
 	LVBM_ONYXIA_PHASE2_ANNOUNCE		= "*** Phase 2 ***"
 	LVBM_ONYXIA_PHASE3_YELL			= "Mir scheint, dass Ihr noch eine Lektion braucht, sterbliche Wesen!";
 	LVBM_ONYXIA_PHASE3_ANNOUNCE		= "*** Phase 3 ***"
+	LVBM_ONYXIA_FEAR_WARNING		= "*** Furcht in %s Sek ***";
+	LVBM_ONYXIA_FEAR_WARNING2		= "*** Furcht ***";
+	LVBM_ONYXIA_FEAR_REGEXP			= "Gebr\195\188ll betroffen.";
+	LVBM_ONYXIA_FEAR				= "Dr\195\182hnendes Gebr\195\188ll";
 
 	-- LVLordKazzak		(( NEED TRANSLATIONS ))
 	LVBM_KAZZAK_INFO			= "Warnt vor dem Supreme Mode von Lord Kazzak und zeigt am Ende die Kampfzeit an.";

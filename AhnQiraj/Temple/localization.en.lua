@@ -10,11 +10,11 @@ LVBM_SKERAM_MIND_CONTROL_TEXTURE	= "Spell_Shadow_Charm";
 LVBM_SKERAM_MIND_CONTROL_DEBUFF		= "True Fulfillment";
 
 -- 2. Three Bugs (Vem & Co)
+LVBM_THREEBUGS_DESCRIPTION  = "Announces Yauj Fears";
 LVBM_THREEBUGS_NAME			= "Three Bugs - Vem, Yauj and Kri";
 LVBM_THREEBUGS_VEM			= "Vem";
 LVBM_THREEBUGS_YAUJ			= "Princess Yauj";
 LVBM_THREEBUGS_KRI			= "Lord Kri";
-LVBM_THREEBUGS_VEM			= "Vem";
 LVBM_THREEBUGS_REAL_NAME	= "Three Bugs";
 LVBM_THREEBUGS_FEAR_EXPR		= "(.+) (.+) afflicted by Fear.";
 LVBM_THREEBUGS_FEAR_ANNOUNCE		= "*** Yauj Fear in %d sec ***";

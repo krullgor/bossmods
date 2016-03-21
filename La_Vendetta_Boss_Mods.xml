@@ -82,6 +82,7 @@
 	<Script file="Interface\AddOns\La_Vendetta_Boss_Mods\MoltenCore\LVShazzrah.lua"/>
 	<Script file="Interface\AddOns\La_Vendetta_Boss_Mods\MoltenCore\LVMajordomo.lua"/>
 	<Script file="Interface\AddOns\La_Vendetta_Boss_Mods\MoltenCore\LVRagnaros.lua"/>
+	<Script file="Interface\AddOns\La_Vendetta_Boss_Mods\MoltenCore\LVRunes.lua"/>
 
 	<Script file="Interface\AddOns\La_Vendetta_Boss_Mods\Other\localization.en.lua"/>	
 	<Script file="Interface\AddOns\La_Vendetta_Boss_Mods\Other\localization.de.lua"/>

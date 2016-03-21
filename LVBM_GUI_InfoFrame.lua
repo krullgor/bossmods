@@ -53,7 +53,7 @@ LVBMStatusBarHandler = {  "OnChar", "OnDragStart", "OnDragStop", "OnEnter", "OnE
 	};
 LVBMFrameHandler = {  "OnChar", "OnDragStart", "OnDragStop", "OnEnter", "OnEvent", "OnHide", "OnKeyDown",
 		    "OnKeyUp", "OnLeave", "OnLoad", "OnMouseDown", "OnMouseUp", "OnMouseWheel", "OnReceiveDrag",
-		    "OnShow", "OnSizeChanged", "OnUpdate",
+		    "OnShow", "OnSizeChanged", "OnUpdate", "CHAT_MSG_MONSTER_YELL",
 	};
 LVBMFrameDefaultScripts = {
 	["OnMouseDown"] = function()
@@ -385,12 +385,67 @@ function LVBMGui.InfoFrameRestoreFind(ftype) 		-- please DO NOT CALL THIS FUNCTI
 	return false;
 end
 
+
+-------------------------------------------------------------------------------
+
+LVBM_MoltenCore_Boss_Runes = 
+{
+	["Geddon"] = 1,
+	["Gehennas"] = 2,
+	["Magmadar"] = 3,
+	["Garr"] = 4,
+	["Shazzrah"] = 5,
+	["Golemagg"] = 6,
+	["Sulfuron"] = 7,
+};
+
+function LVBM_Gui_RunesFrame(moption)
+	if( LVBMRunesFrame ) then
+		local mframe = LVBMRunesFrame:GetObject();
+		if( mframe:IsShown() and not moption ) then	LVBMRunesFrame:Hide();
+		else LVBMRunesFrame:Show(); end
+	else LVBM_Gui_CreateMcRunesFrame();
+	end
+end
+
+function LVBM_Gui_UpdateRunesFrame(boss)
+	local x = LVBM_MoltenCore_Boss_Runes[boss];
+	if( getglobal("LVBMRunesFrameBoss"..x) ) then
+		getglobal("LVBMRunesFrameBoss"..x):SetText("");
+		--local objectName = getglobal("LVBMRunesFrameBoss"..x):GetObject():GetName();
+		--getglobal(objectName.."Text"):SetTextColor(0, 1, 0);
+	end
+end
+
+function LVBM_Gui_CreateMcRunesFrame()
+	LVBMRunesFrame = LVBMGui:CreateInfoFrame(LVBMGUI_RUNES_FRAME_TITLE, LVBMGUI_RUNES_FRAME_TEXT);
+	if( not LVBMRunesFrame ) then 
+		LVBM.AddMsg("Can't get Frame from CreateInfoFrame()");
+		return false; 
+	end
+	
+	LVBMRunesFrameBoss3 = LVBMRunesFrame:CreateTextField("Magmadar");
+	getglobal(LVBMRunesFrameBoss3:GetObject():GetName().."Text"):SetTextColor(1, 0, 0);
+	LVBMRunesFrameBoss2 = LVBMRunesFrame:CreateTextField("Gehennas");
+	getglobal(LVBMRunesFrameBoss2:GetObject():GetName().."Text"):SetTextColor(1, 0, 0);
+	LVBMRunesFrameBoss4 = LVBMRunesFrame:CreateTextField("Garr");
+	getglobal(LVBMRunesFrameBoss4:GetObject():GetName().."Text"):SetTextColor(1, 0, 0);
+	LVBMRunesFrameBoss5 = LVBMRunesFrame:CreateTextField("Shazzrah");
+	getglobal(LVBMRunesFrameBoss5:GetObject():GetName().."Text"):SetTextColor(1, 0, 0);
+	LVBMRunesFrameBoss1 = LVBMRunesFrame:CreateTextField("Geddon");
+	getglobal(LVBMRunesFrameBoss1:GetObject():GetName().."Text"):SetTextColor(1, 0, 0);
+	LVBMRunesFrameBoss6 = LVBMRunesFrame:CreateTextField("Golemagg");
+	getglobal(LVBMRunesFrameBoss6:GetObject():GetName().."Text"):SetTextColor(1, 0, 0);
+	LVBMRunesFrameBoss7 = LVBMRunesFrame:CreateTextField("Sulfuron");
+	getglobal(LVBMRunesFrameBoss7:GetObject():GetName().."Text"):SetTextColor(1, 0, 0);
+
+end
+
 --------------------------------------------------------------------------------
 --
 --   DistanceFrame - Usage via  /distance  loaded by GUI on "PLAYER_LOGIN"
 --
 --------------------------------------------------------------------------------
-
 
 function LVBM_Gui_DistanceFrame(moption)
 	if( LVBMDistanceFrame ) then

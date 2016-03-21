@@ -1,10 +1,14 @@
 if GetLocale() == "deDE" then
 	--Razorgore
-	LVBM_RG_NAME		= "Razorgore der Ungez\195\164hmte";
+	LVBM_RG_NAME		= "Grethok der Aufseher";
 	LVBM_RG_DESCRIPTION	= "Stellt einen Timer f\195\188r den Anfang des Spawns zur Verf\195\188gung.";
 	
 	LVBM_RG_CONTROLLER	= "Grethok der Aufseher";
 	
+	LVBM_RG_FIREBALL_VOLLEY	= "Feuerballsalve";
+	LVBM_RG_FIREBALL_VOLLEY_WARNING	= "*** Feuerballsalve in %s Sek ***";
+	
+	LVBM_RG_CONFLAGRATION = "Gro\195\159brand";
 	
 	--Vaelastrasz
 	LVBM_VAEL_NAME			= "Vaelastrasz der Verdorbene";
@@ -90,6 +94,9 @@ if GetLocale() == "deDE" then
 	LVBM_NEFARIAN_BLOCK_HEALS	= "Heilung w\195\164hrend Priester Calls blockieren";
 	LVBM_NEFARIAN_UNEQUIP_BOW	= "Bogen/Gewehr vor Class Calls ausziehen";
 	
+	LVBM_NEFARIAN_SYNCKILLS_INFO		= "Syncronisiere kills in Phase1";
+	LVBM_NEFARIAN_SYNCKILLS_ANNOUNCE	= "*** %d Drakonids down ***";
+
 	LVBM_NEFARIAN_FEAR_WARNING			= "*** Fear in 1.5 Sek ***";
 	LVBM_NEFARIAN_PHASE2_WARNING		= "*** Nefarian inc - 15 Sek ***";
 	LVBM_NEFARIAN_CLASS_CALL_WARNING	= "*** Class Call bald ***";
@@ -106,6 +113,16 @@ if GetLocale() == "deDE" then
 	LVBM_NEFARIAN_UNEQUIP_ERROR			= "Fehler bei dem Versuch die Waffe auszuziehen."
 	LVBM_NEFARIAN_EQUIP_ERROR			= "Fehler bei dem Versuch die Waffe anzuziehen."
 	
+	LVBM_NEFARIAN_DRAKONID_DOWN = {};
+	LVBM_NEFARIAN_DRAKONID_DOWN[1] = "Schwarzer Drakonid stirbt.";
+	LVBM_NEFARIAN_DRAKONID_DOWN[2] = "Blauer Drakonid stirbt.";
+	LVBM_NEFARIAN_DRAKONID_DOWN[3] = "Grüner Drakonid stirbt.";
+	LVBM_NEFARIAN_DRAKONID_DOWN[4] = "Bronzener Drakonid stirbt.";
+	LVBM_NEFARIAN_DRAKONID_DOWN[5] = "Roter Drakonid stirbt.";
+	LVBM_NEFARIAN_DRAKONID_DOWN[6] = "Prismatischer Drakonid stirbt.";
+
+	LVBM_NEFARIAN_KILLCOUNT			= "Aktuell getötet: %d";
+
 	LVBM_NEFARIAN_BLOCKED_SPELLS	= {
 		["Blitzheilung"]			= 1.5,
 		["Gro\195\159e Heilung"]	= 2.5,
@@ -117,6 +134,7 @@ if GetLocale() == "deDE" then
 	
 	LVBM_NEFARIAN_CAST_SHADOW_FLAME	= "Nefarian beginnt Schattenflamme zu wirken.";
 	LVBM_NEFARIAN_CAST_FEAR			= "Nefarian beginnt Dr\195\182hnendes Gebr\195\188ll zu wirken.";
+	LVBM_NEFARIAN_FEAR_EXPR			= "Dr\195\182hnendes Gebr\195\188ll";
 	LVBM_NEFARIAN_YELL_PHASE2		= "Sehr gut, meine Diener. Der Mut der Sterblichen scheint zu schwinden! Nun lasst uns sehen, wie sie sich gegen den wahren Herrscher des Blackrock behaupten werden!";
 	LVBM_NEFARIAN_YELL_PHASE3		= "Impossible! Rise my minions!  Serve your master once more!";
 	--thx 2 leidenschafft

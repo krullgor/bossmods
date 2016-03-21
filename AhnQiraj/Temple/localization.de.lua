@@ -22,11 +22,11 @@ if GetLocale() == "deDE" then
 	LVBM_SKERAM_MIND_CONTROL_DEBUFF		= "Wahre Erf\195\188llung";	
 
 	-- 2. Three Bugs (Vem & Co)
+	LVBM_THREEBUGS_DESCRIPTION  = "Kündet Yauj Fears an";
 	LVBM_THREEBUGS_NAME			= "Drei Käfer - Vem, Yauj and Kri";
 	LVBM_THREEBUGS_VEM			= "Vem";
 	LVBM_THREEBUGS_YAUJ			= "Prinzessin Yauj";
 	LVBM_THREEBUGS_KRI			= "Lord Kri";
-	LVBM_THREEBUGS_VEM			= "Vem";
 	LVBM_THREEBUGS_REAL_NAME	= "Drei Käfer";
 	LVBM_THREEBUGS_FEAR_EXPR		= "(.+) (.+) betroffen von Furcht.";
 	LVBM_THREEBUGS_FEAR_ANNOUNCE		= "*** Yauj Fear in %d Sek ***";

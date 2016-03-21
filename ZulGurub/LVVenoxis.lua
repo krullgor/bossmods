@@ -22,10 +22,10 @@ LVBM.AddOns.Venoxis = {
 	["OnEvent"] = function(event, arg1) 
 		if ( event == "CHAT_MSG_SPELL_PERIODIC_CREATURE_BUFFS" and arg1 == LVBM_VENOXIS_RENEW_EXPR ) then
 			LVBM.Announce(LVBM_VENOXIS_RENEW_ANNOUNCE);
+			PlaySoundFile("Interface\\AddOns\\La_Vendetta_Boss_Mods\\Sounds\\alarmbuzzer.ogg", "Master");
 
 		elseif ( event == "CHAT_MSG_MONSTER_YELL" and arg1 == LVBM_VENOXIS_TRANSFORM_EXPR ) then
 			LVBM.Announce(LVBM_VENOXIS_TRANSFORM_ANNOUNCE);
-
 		end
 	end,		
 };

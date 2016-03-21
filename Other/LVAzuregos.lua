@@ -28,6 +28,7 @@ LVBM.AddOns.Azuregos = {
 
 		elseif( event == "CHAT_MSG_MONSTER_YELL" and arg1 == LVBM_AZUREGOS_PORT_EXPR ) then
 			LVBM.Announce(LVBM_AZUREGOS_PORT_ANNOUNCE);
+			LVBM.StartStatusBarTimer(30, "Teleport");
 			
 		end
 	end,

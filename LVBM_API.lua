@@ -377,7 +377,7 @@ LVBM_SavedVars = {
 
 LVBM = {}
 
-LVBM.Version = "1.92"
+LVBM.Version = "1.95"
 
 LVBM.ScheduleData = {
 }
@@ -556,14 +556,17 @@ function LVBM.OnLoad()
 		elseif string.lower(msg) == "ver2" then
 			local syncInfo = {};
 			local msg = "";
+			local numClients = 0;
 			for i = 1, GetNumRaidMembers() do
 				msg = "raid"..i.." - ";
 				msg = msg.."Name: "..UnitName("raid"..i).." - ";
 				if (LVBM.SyncInfo.Clients[UnitName("raid"..i)] and LVBM.SyncInfo.Clients[UnitName("raid"..i)] == LVBM.Version) then
 					msg = msg.."Version: "..LVBM.SyncInfo.Clients[UnitName("raid"..i)];
+					numClients = numClients + 1;
 				elseif (LVBM.SyncInfo.Clients[UnitName("raid"..i)]) then
 					msg = msg.."Version: "..LVBM.SyncInfo.Clients[UnitName("raid"..i)].." OLD";
 					LVBM.SendHiddenWhisper("<Vendetta Boss Mods> "..LVBM_YOUR_VERSION_SUCKS, UnitName("raid"..i));
+					numClients = numClients + 1;
 				else
 					msg = msg.."Version: -none-";
 				end
@@ -571,7 +574,7 @@ function LVBM.OnLoad()
 				LVBM.AddMsg(msg);
 			end
 
-			LVBM.AddMsg(string.format(LVBM_FOUND_CLIENTS, i));
+			LVBM.AddMsg(string.format(LVBM_FOUND_CLIENTS, numClients));
 
 		elseif string.lower(msg) == "bars" or string.lower(msg) == "barinfo" or string.lower(msg) == "syncedby" or string.lower(msg) == "syncinfo" then
 			local syncedBars = false;
@@ -964,17 +967,35 @@ function LVBM.OnEvent(event, arg1)
 	elseif (event == "PLAYER_LEAVE_COMBAT") then
 		LVBM.AutoAttack = false;
 	elseif (event == "PLAYER_REGEN_DISABLED") then
+		--LVBM.AddMsg("player regen disabled!");
 		if LVBM.Bosses[GetRealZoneText()] and not LVBM.InCombat then
 			local bossTable = {};
 			local bosses = {};
-			
+			--[[
+			local target = UnitName("target");
+			LVBM.AddMsg(target);
+			]]--
 			for index, value in pairs(LVBM.Bosses[GetRealZoneText()]) do
 				if value.startMethod == "COMBAT" then
+					--[[
+					TargetByName(value.name);
+					if(UnitName("target") == value.name and UnitAffectingCombat("target")) then
+						LVBM.AddMsg("found " .. value.name);
+					else
+						LVBM.AddMsg("could not find " .. value.name);
+					end
+					]]--
 					bossTable[value.name] = {["index"] = index, ["value"] = value};
 					table.insert(bosses, value.name);
 				end
 			end
+			--[[
+			if(target != nil) then
+				TargetByName(target);
+			end
+			]]--
 			bosses = LVBM.UnitExists(bosses);
+			--LVBM.AddMsg(bosses);
 			if bosses then
 				for index, value in pairs(bosses) do
 					if value then
@@ -2740,4 +2761,22 @@ function LVBM.SetHooks()
 		end
 		WIM_FilterResult = LVBM.Hooks.newWIM_FilterResult;
 	end
+end
+
+-------------------
+--Sound Functions--
+-------------------
+
+function LVBM.PlaySound(fileName, optChannel)
+	if not optChannel then
+		optChannel = "Master";
+	end
+	
+	fileName = "Interface\\AddOns\\La_Vendetta_Boss_Mods\\Sounds\\"..fileName;
+	
+	PlaySoundFile(fileName, optChannel);
+end
+
+function LVBM.PlayTimer(time)
+	LVBM.PlaySound("Corsica\\"..time..".ogg");
 end

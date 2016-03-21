@@ -3,7 +3,7 @@
 -- High Priestess Jeklik
 LVBM_JEKLIK_NAME		= "High Priestess Jeklik";
 LVBM_JEKLIK_INFO		= "Shows warnings for High Priestess Jeklik when she summons bats or casts heal.";
-LVBM_JEKLIK_BOMBBATS_EXPR	= "I command you to rain fire down upon these invaders!$";
+LVBM_JEKLIK_BOMBBATS_EXPR	= "I command you to rain fire down upon these invaders!";
 LVBM_JEKLIK_BOMBBATS_ANNOUNCE	= "*** Bomb bats incoming ***";
 LVBM_JEKLIK_CASTHEAL_EXPR	= "%s begins to cast a Great Heal!";
 LVBM_JEKLIK_CASTHEAL_ANNOUNCE	= "*** Heal ***";
@@ -25,13 +25,17 @@ LVBM_MARLI_SPIDER_EXPR		= "Aid me my brood!";
 LVBM_MARLI_SPIDER_ANNOUNCE	= "*** Spiders spawned ***";
 
 -- Bloodlord Mandokir
-LVBM_MANDOKIR_INFO		= "Warns players who are being watched by Bloodlord Mandokir.";
-LVBM_MANDOKIR_WATCH_EXPR	= "([^%s]+)! I'm watching you!";
+LVBM_MANDOKIR_AGGRO				= "I'll feed your souls to Hakkar himself!";
+LVBM_MANDOKIR_INFO				= "Warns players who are being watched by Bloodlord Mandokir.";
+LVBM_MANDOKIR_WATCH_EXPR		= "([^%s]+)! I'm watching you!";
 LVBM_MANDOKIR_WATCH_ANNOUNCE	= "*** %s is being watched ***";
-LVBM_MANDOKIR_SETICON_INFO	= "Set icon";
-LVBM_MANDOKIR_WHISPER_INFO	= "Send whisper";
-LVBM_MANDOKIR_WHISPER_TEXT	= "You are being watched!";
-LVBM_MANDOKIR_SELFWARN		= "You are being watched!";
+LVBM_MANDOKIR_SETICON_INFO		= "Set icon";
+LVBM_MANDOKIR_WHISPER_INFO		= "Send whisper";
+LVBM_MANDOKIR_WHISPER_TEXT		= "You are being watched!";
+LVBM_MANDOKIR_SELFWARN			= "You are being watched!";
+LVBM_MANDOKIR_WARN_WATCH		= "*** Watch player in %s sec ***";
+LVBM_MANDOKIR_WARN_CLEAVE		= "*** Cleave in %s sec ***";
+LVBM_MANDOKIR_WARN_WHIRLWIND	= "*** Whirlwind in %s sec ***";
 
 -- Thekal - eg heal ability
 LVBM_THEKAL_NAME	= "High Priest Thekal";

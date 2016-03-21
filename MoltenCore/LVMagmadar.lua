@@ -26,6 +26,12 @@ LVBM.AddOns.Magmadar = {
 		["CHAT_MSG_SPELL_PERIODIC_SELF_DAMAGE"] = true,
 		["CHAT_MSG_SPELL_PERIODIC_FRIENDLYPLAYER_DAMAGE"] = true,
 	},	
+	["OnCombatStart"] = function(delay)
+		LVBM.Schedule(15 - delay, "LVBM.AddOns.Magmadar.OnEvent", "FearWarning", 5);
+		LVBM.StartStatusBarTimer(20 - delay, "Fear");
+		
+		LVBM.StartStatusBarTimer(25, "Frenzy in");
+	end,
 	["OnEvent"] = function(event, arg1) 
 		if ( (event == "CHAT_MSG_MONSTER_EMOTE") and ( arg1 == LVBM_MAGMADAR_FRENZY ) and ( arg2 == LVBM_MAGMADAR_NAME ) ) then
 			LVBM.EndStatusBarTimer("Frenzy")
@@ -34,7 +40,7 @@ LVBM.AddOns.Magmadar = {
 				LVBM.Announce(LVBM_MAGMADAR_FRENZY_WARNING);
 			end
 		elseif ( event == "CHAT_MSG_SPELL_PERIODIC_PARTY_DAMAGE" or event == "CHAT_MSG_SPELL_PERIODIC_SELF_DAMAGE" or event == "CHAT_MSG_SPELL_PERIODIC_FRIENDLYPLAYER_DAMAGE" ) then
-			if ( string.find(arg1, LVBM_MAGMADAR_FEAR) ) and not LVBM.AddOns.Magmadar.Fearing then
+			if ( string.find(arg1, LVBM_MAGMADAR_FEAR) or string.find(arg1, LVBM_MAGMADAR_FEAR_YOU)) and not LVBM.AddOns.Magmadar.Fearing then
 				LVBM.AddOns.Magmadar.Fearing = true;
 				LVBM.Announce(LVBM_MAGMADAR_FEAR_WARNING1);
 				LVBM.Schedule(25, "LVBM.AddOns.Magmadar.OnEvent", "FearWarning");

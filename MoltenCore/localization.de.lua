@@ -33,6 +33,7 @@
 	LVBM_BARON_BOMB_WHISPER		= "Du bist die Bombe!";
 	LVBM_BARON_BOMB_WARNING    	= "*** %s ist die Bombe ***";
 	LVBM_BARON_BOMB_REGEXP	 	= "([^%s]+) (%w+) von Lebende Bombe betroffen.";
+	LVBM_BARON_INFERNO_HEADSUP	= "*** Inferno in %s Sec ***";
 	
 	-- 6. Shazzrah
 	LVBM_SHAZZRAH_INFO					= "Sagt Shazzrahs Fluch und Magie d\195\164mpfen  an.";
@@ -44,6 +45,7 @@
 --	LVBM_SHAZZRAH_BLINK		 			= "Shazzrah gains Blink.";
 	LVBM_SHAZZRAH_DEADEN_MAGIC			= "Shazzrah bekommt 'Magie d\195\164mpfen'.";
 	LVBM_SHAZZRAH_CURSE_REGEXP			= "(%w+) ist von Shazzrahs Fluch betroffen.";
+	LVBM_SHAZZRAH_TELEPORT_WARNING		= "*** Teleport in %s Sek ***";
 	
 	-- 7. Sulfuron
 	-- (hmm?)
@@ -75,4 +77,10 @@
 	LVBM_RAGNAROS_HITS			= "Ragnaros ([hitscr]+) ([^%s]+) for (%d+)";
 	LVBM_RAGNAROS_WRATH	 		= "SPÜRT DIE FLAMMEN VON SULFURON!";
 	LVBM_RAGNAROS_SUBMERGE 		= nil;
+
+	-- 11. Runes
+	LVBM_RUNES_NAME				= "Runen";
+	LVBM_RUNES_INFO				= "Listet nicht gelöschte Runen";
+	LVBM_DOWSED_RUNE_REGEXP		= "Ich habe die Rune von (%w+) gel";
+	LVBM_RUNES_SHOW_FRAME		= "Zeige Fenster";
 end

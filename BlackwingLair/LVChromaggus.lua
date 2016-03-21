@@ -38,6 +38,7 @@ LVBM.AddOns.Chromaggus = {
 		["CHAT_MSG_SPELL_FRIENDLYPLAYER_DAMAGE"] = true,
 	},
 	["OnCombatStart"] = function(delay)
+		LVBM.Schedule(20 - delay, "LVBM.AddOns.Chromaggus.OnEvent", "BreathTimer", 10);
 		LVBM.Schedule(22 - delay, "LVBM.AddOns.Chromaggus.OnEvent", "BreathWarning", 1);
 		LVBM.Schedule(54 - delay, "LVBM.AddOns.Chromaggus.OnEvent", "BreathWarning", 2);
 		LVBM.StartStatusBarTimer(30 - delay, "Breath 1");
@@ -62,7 +63,15 @@ LVBM.AddOns.Chromaggus = {
 				LVBM.EndStatusBarTimer(breath);
 				LVBM.StartStatusBarTimer(2, breath.." cast");
 				LVBM.Schedule(2, "LVBM.AddOns.Chromaggus.OnEvent", "StartNewBreathTimer", breath);
+				LVBM.Schedule(20, "LVBM.AddOns.Chromaggus.OnEvent", "BreathTimer", 10);
 			end
+		elseif event == "BreathTimer" then
+			if arg1 <= 0 then
+				return;
+			end
+			
+			LVBM.PlayTimer(arg1);
+			LVBM.Schedule(1, "LVBM.AddOns.Chromaggus.OnEvent", "BreathTimer", arg1 - 1);
 		elseif event == "StartNewBreathTimer" and arg1 then
 			LVBM.EndStatusBarTimer(tostring(arg1));
 			LVBM.StartStatusBarTimer(60, tostring(arg1));

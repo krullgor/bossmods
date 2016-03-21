@@ -27,7 +27,9 @@ LVBM.AddOns.Huhuran = {
 		["CHAT_MSG_SPELL_PERIODIC_FRIENDLYPLAYER_DAMAGE"] = true,
 		["CHAT_MSG_SPELL_PERIODIC_PARTY_DAMAGE"] = true,
 	},	
-	
+	["OnCombatStart"] = function(delay)
+		LVBM.StartStatusBarTimer(300 - delay, "Enrage");
+	end,
 	["OnEvent"] = function(event, arg1)	
 		if event == "CHAT_MSG_SPELL_PERIODIC_SELF_DAMAGE" or event == "CHAT_MSG_SPELL_PERIODIC_FRIENDLYPLAYER_DAMAGE" or event == "CHAT_MSG_SPELL_PERIODIC_PARTY_DAMAGE" then
 			if (string.find(arg1, LVBM_HUHURAN_WYVERN_REGEXP) and (not LVBM.AddOns.Huhuran.WyvernSting)) then

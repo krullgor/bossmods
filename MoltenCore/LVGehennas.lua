@@ -17,6 +17,10 @@ LVBM.AddOns.Gehennas = {
 		["CHAT_MSG_SPELL_PERIODIC_PARTY_DAMAGE"] = true,
 		["CHAT_MSG_SPELL_PERIODIC_FRIENDLYPLAYER_DAMAGE"] = true,
 	},	
+	["OnCombatStart"] = function(delay)
+		LVBM.Schedule(15 - delay, "LVBM.AddOns.Gehennas.OnEvent", "CurseWarning", 5);
+		LVBM.StartStatusBarTimer(20 - delay, "Curse");
+	end,
 	["OnEvent"] = function(event, arg1) 
 		if ( event == "CHAT_MSG_SPELL_PERIODIC_PARTY_DAMAGE" or event == "CHAT_MSG_SPELL_PERIODIC_SELF_DAMAGE" or event == "CHAT_MSG_SPELL_PERIODIC_FRIENDLYPLAYER_DAMAGE" ) then
 			if ( string.find(arg1, LVBM_GEHENNAS_CURSE_REGEXP) ) and not LVBM.AddOns.Gehennas.isCasting then

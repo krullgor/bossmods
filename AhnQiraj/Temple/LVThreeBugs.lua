@@ -7,7 +7,7 @@ LVBM.AddOns.ThreeBugs = {
 	["Name"] = LVBM_THREEBUGS_NAME,
 	["Abbreviation1"] = "Bugs",
 	["Version"] = "1.0",
-	["Author"] = "La Vendetta|Nitram",
+	["Author"] = "Krullgor",
 	["Description"] = LVBM_THREEBUGS_DESCRIPTION,
 	["Instance"] = LVBM_AQ40,
 	["GUITab"] = LVBMGUI_TAB_AQ40,
@@ -23,6 +23,10 @@ LVBM.AddOns.ThreeBugs = {
 		["CHAT_MSG_SPELL_CREATURE_VS_CREATURE_BUFF"] = true,
 	},
 	["LastFear"] = 0,
+	["OnCombatStart"] = function(delay)
+		LVBM.StartStatusBarTimer(20 - delay, "Yauj First Fear");
+		LVBM.Schedule(17 - delay, "LVBM.AddOns.ThreeBugs.OnEvent", "FearIn3");	-- 20 Sec Fear
+	end,
 	["OnEvent"] = function(event, arg1)
 
 		if (event == "CHAT_MSG_SPELL_CREATURE_VS_CREATURE_BUFF") then

@@ -1,9 +1,14 @@
 --Razorgore
-LVBM_RG_NAME		= "Razorgore the Untamed";
+LVBM_RG_NAME		= "Grethok the Controller";
 LVBM_RG_DESCRIPTION	= "Provides a timer for beginning of the add spawn.";
 LVBM_RG_YELL		= "Intruders have breached the hatchery! Sound the alarm! Protect the eggs at all costs!";
 
 LVBM_RG_CONTROLLER	= "Grethok the Controller";
+	
+LVBM_RG_FIREBALL_VOLLEY	= "Fireball Volley";
+LVBM_RG_FIREBALL_VOLLEY_WARNING	= "*** Fireball Volley in %s sec ***";
+
+LVBM_RG_CONFLAGRATION = "Conflagration";
 
 
 --Vaelastrasz
@@ -88,6 +93,9 @@ LVBM_NEFARIAN_DESCRIPTION	= "Provides timers for class calls.";
 LVBM_NEFARIAN_BLOCK_HEALS	= "Block heals during priest call";
 LVBM_NEFARIAN_UNEQUIP_BOW	= "Unequip bow/gun before class calls";
 
+LVBM_NEFARIAN_SYNCKILLS_INFO		= "Announce and Sync Drakonid Kills in Phase1";
+LVBM_NEFARIAN_SYNCKILLS_ANNOUNCE	= "*** %d Drakonids down ***";
+
 LVBM_NEFARIAN_FEAR_WARNING			= "*** Fear in 1.5 sec ***";
 LVBM_NEFARIAN_PHASE2_WARNING		= "*** Nefarian inc - 15 sec ***";
 LVBM_NEFARIAN_CLASS_CALL_WARNING	= "*** Class call soon ***";
@@ -105,6 +113,16 @@ LVBM_NEFARIAN_HEAL_BLOCKED			= "You are not allowed to cast %s during a priest c
 LVBM_NEFARIAN_UNEQUIP_ERROR			= "Error while unequipping your bow/gun."
 LVBM_NEFARIAN_EQUIP_ERROR			= "Error while equipping your bow/gun."
 
+LVBM_NEFARIAN_DRAKONID_DOWN = {};
+LVBM_NEFARIAN_DRAKONID_DOWN[1] = "Black Drakonid dies.";
+LVBM_NEFARIAN_DRAKONID_DOWN[2] = "Blue Drakonid dies.";
+LVBM_NEFARIAN_DRAKONID_DOWN[3] = "Green Drakonid dies.";
+LVBM_NEFARIAN_DRAKONID_DOWN[4] = "Bronze Drakonid dies.";
+LVBM_NEFARIAN_DRAKONID_DOWN[5] = "Red Drakonid dies.";
+LVBM_NEFARIAN_DRAKONID_DOWN[6] = "Chromatic Drakonid dies.";
+
+LVBM_NEFARIAN_KILLCOUNT			= "Current kill count: %d";
+
 LVBM_NEFARIAN_BLOCKED_SPELLS	= {
 	["Flash Heal"]			= 1.5,
 	["Greater Heal"]		= 2.5,
@@ -116,6 +134,7 @@ LVBM_NEFARIAN_BLOCKED_SPELLS	= {
 
 LVBM_NEFARIAN_CAST_SHADOW_FLAME	= "Nefarian begins to cast Shadow Flame.";
 LVBM_NEFARIAN_CAST_FEAR			= "Nefarian begins to cast Bellowing Roar.";
+LVBM_NEFARIAN_FEAR_EXPR			= "(.+) (.+) afflicted by Bellowing Roar.";
 LVBM_NEFARIAN_YELL_PHASE1		= "Let the games begin!";
 LVBM_NEFARIAN_YELL_PHASE2		= "Well done, my minions. The mortals' courage begins to wane! Now, let's see how they contend with the true Lord of Blackrock Spire!!!";
 LVBM_NEFARIAN_YELL_PHASE3		= "Impossible! Rise my minions!  Serve your master once more!";

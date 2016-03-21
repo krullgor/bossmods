@@ -42,6 +42,7 @@ LVBM.AddOns.TwinEmps = {
 				LVBM.Announce(LVBM_TWINEMPS_TELEPORT_ANNOUNCE);
 				LVBM.EndStatusBarTimer("Teleport");
 				LVBM.StartStatusBarTimer(30, "Teleport");
+				--LVBM.Schedule(20, "LVBM.AddOns.TwinEmps.OnEvent", "CHAT_MSG_SPELL_CREATURE_VS_CREATURE_DAMAGE", LVBM_TWINEMPS_CAST_SPELL_1); --next tele 30sec
 				LVBM.Schedule(20, "LVBM.AddOns.TwinEmps.OnEvent", "TeleportWarning", 10);
 				LVBM.Schedule(25, "LVBM.AddOns.TwinEmps.OnEvent", "TeleportWarning", 5);
 			end

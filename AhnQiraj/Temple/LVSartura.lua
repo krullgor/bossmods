@@ -16,6 +16,9 @@ LVBM.AddOns.Sartura = {
 		["CHAT_MSG_SPELL_AURA_GONE_OTHER"] = true,
 		["CHAT_MSG_MONSTER_EMOTE"] = true,		
 	},
+	["OnCombatStart"] = function(delay)
+		LVBM.StartStatusBarTimer(600 - delay, "Enrage");
+	end,
 	["OnEvent"] = function(event, arg1)
 		if (event == "CHAT_MSG_MONSTER_EMOTE") then
 			if (string.find(string.lower(arg1), string.lower(LVBM_SARTURA_ENRAGE))) and (arg2 == LVBM_SARTURA_SARTURA) then
@@ -26,7 +29,8 @@ LVBM.AddOns.Sartura = {
 				LVBM.Announce(LVBM_SARTURA_ANNOUNCE_WHIRLWIND);
 				LVBM.StartStatusBarTimer(15, "Whirlwind");
 			elseif (arg1 == LVBM_SARTURA_WHIRLWIND_FADES) then		
-				LVBM.Announce(LVBM_SARTURA_WHIRLWIND_FADED);				
+				LVBM.Announce(LVBM_SARTURA_WHIRLWIND_FADED);
+				LVBM.StartStatusBarTimer(10, "Next Whirlwind");
 			end
 		end
 	end,

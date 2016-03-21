@@ -37,7 +37,20 @@ LVBM.AddOns.Vaelastrasz = {
 			LVBM.CleanUp();
 		end
 	end,		
+	["OnCombatStart"] = function(delay)
+		LVBM.StartStatusBarTimer(15 - delay, "Burning Adrenaline");
+		LVBM.Schedule(10 - delay, "LVBM.AddOns.Vaelastrasz.OnEvent", "BAWarning", 5);
+	end,
 	["OnEvent"] = function(event, arg1)
+		if event == "BAWarning" then
+			if arg1 <= 0 then
+				LVBM.Schedule(10, "LVBM.AddOns.Vaelastrasz.OnEvent", "BAWarning", 5);
+				LVBM.StartStatusBarTimer(15, "Burning Adrenaline");
+				return;
+			end
+			LVBM.PlayTimer(arg1);
+			LVBM.Schedule(1, "LVBM.AddOns.Vaelastrasz.OnEvent", "BAWarning", arg1 - 1);
+		end
 		if event == "CHAT_MSG_SPELL_PERIODIC_PARTY_DAMAGE" 
 		or event == "CHAT_MSG_SPELL_PERIODIC_FRIENDLYPLAYER_DAMAGE" 
 		or event ==  "CHAT_MSG_SPELL_PERIODIC_SELF_DAMAGE" then	
@@ -64,6 +77,7 @@ LVBM.AddOns.Vaelastrasz = {
 				LVBM.Announce(string.format(LVBM_VAEL_BA_WARNING, name));
 				if name == UnitName("player") then
 					LVBM.AddSpecialWarning(LVBM_VAEL_BA, true, true);
+					LVBM.PlaySound("alarmbuzzer.ogg");
 				else
 					if LVBM.AddOns.Vaelastrasz.Options.Whisper then
 						LVBM.SendHiddenWhisper(LVBM_VAEL_BA_WHISPER, name);

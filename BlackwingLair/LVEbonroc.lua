@@ -28,8 +28,9 @@ LVBM.AddOns.Ebonroc = {
 		["CHAT_MSG_SPELL_AURA_GONE_SELF"] = true,
 	},	
 	["OnCombatStart"] = function(delay)
-		LVBM.StartStatusBarTimer(31 - delay, "Wing Buffet");
-		LVBM.Schedule(28 - delay, "LVBM.AddOns.Ebonroc.OnEvent", "WingBuffetWarning", 3);
+		LVBM.StartStatusBarTimer(30 - delay, "Wing Buffet");
+		LVBM.Schedule(27 - delay, "LVBM.AddOns.Ebonroc.OnEvent", "WingBuffetWarning", 3);
+		LVBM.Schedule(25 - delay, "LVBM.AddOns.Ebonroc.OnEvent", "WingBuffetTimer", 5);
 	end,
 	["OnCombatEnd"] = function()
 		if( LVBM.AddOns.Ebonroc.Options.SetIcon ) then
@@ -41,25 +42,34 @@ LVBM.AddOns.Ebonroc = {
 			if arg1 == LVBM_EBONROC_WING_BUFFET then
 				LVBM.Announce(string.format(LVBM_WING_BUFFET_WARNING, 1));
 				LVBM.StartStatusBarTimer(1, "Wing Buffet Cast");
-				LVBM.Schedule(29, "LVBM.AddOns.Ebonroc.OnEvent", "WingBuffetWarning", 3);
-				LVBM.Schedule(1, "LVBM.AddOns.Ebonroc.OnEvent", "WingBuffetWarning", 31);
+				LVBM.Schedule(26, "LVBM.AddOns.Ebonroc.OnEvent", "WingBuffetWarning", 3);
+				LVBM.Schedule(1, "LVBM.AddOns.Ebonroc.OnEvent", "WingBuffetWarning", 29);
+				LVBM.Schedule(25, "LVBM.AddOns.Ebonroc.OnEvent", "WingBuffetTimer", 5);
 			elseif arg1 == LVBM_EBONROC_SHADOW_FLAME then
 				LVBM.Announce(LVBM_SHADOW_FLAME_WARNING);
 				LVBM.StartStatusBarTimer(2, "Shadow Flame Cast");
 			end
+		elseif event == "WingBuffetTimer" then
+			if arg1 <= 0 then
+				return;
+			end
+			
+			LVBM.PlayTimer(arg1);
+			LVBM.Schedule(1, "LVBM.AddOns.Ebonroc.OnEvent", "WingBuffetTimer", arg1 - 1);
 			
 		elseif event == "WingBuffetWarning" then
 			if arg1 == 3 then
 				LVBM.Announce(string.format(LVBM_WING_BUFFET_WARNING, 3));
-			elseif arg1 == 31 then
+			elseif arg1 == 29 then
 				LVBM.EndStatusBarTimer("Wing Buffet");
-				LVBM.StartStatusBarTimer(31, "Wing Buffet");
+				LVBM.StartStatusBarTimer(29, "Wing Buffet");
 			end
 			
 		elseif event == "CHAT_MSG_SPELL_PERIODIC_PARTY_DAMAGE" or event == "CHAT_MSG_SPELL_PERIODIC_FRIENDLYPLAYER_DAMAGE" or event == "CHAT_MSG_SPELL_PERIODIC_SELF_DAMAGE" then
 			local _, _, name = string.find(arg1, LVBM_EBONROC_SHADOW_REGEXP);
 			if name == LVBM_YOU then
 				name = UnitName("player");
+				LVBM.PlaySound("alarmbuzzer.ogg");
 			end		
 			
 			if name then

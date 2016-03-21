@@ -2,12 +2,17 @@
 -- LVOnyxia
 LVBM_ONYXIA_NAME			= "Onyxia";
 LVBM_ONYXIA_INFO			= "Displays a warning when Onyxia does her deep breath ability during phase two.";
-LVBM_ONYXIA_BREATH_EMOTE 		= "%s takes in a deep breath...";
+LVBM_ONYXIA_PHASE1_YELL			= "How fortuitous. Usually, I must leave my lair to feed.";
+LVBM_ONYXIA_BREATH_EMOTE 		= "deep breath";
 LVBM_ONYXIA_BREATH_ANNOUNCE		= "*** Deep Breath ***"
 LVBM_ONYXIA_PHASE2_YELL			= "This meaningless exertion bores me. I'll incinerate you all from above!";
 LVBM_ONYXIA_PHASE2_ANNOUNCE		= "*** Phase 2 ***"
 LVBM_ONYXIA_PHASE3_YELL			= "It seems you'll need another lesson, mortals!";
 LVBM_ONYXIA_PHASE3_ANNOUNCE		= "*** Phase 3 ***"
+LVBM_ONYXIA_FEAR_WARNING		= "*** Fear in %s sec ***";
+LVBM_ONYXIA_FEAR_WARNING2		= "*** Fear ***";
+LVBM_ONYXIA_FEAR_REGEXP			= "([^%s]+) (%w+) afflicted by Bellowing Roar.";
+LVBM_ONYXIA_FEAR				= "Bellowing Roar";
 
 -- LVLordKazzak
 LVBM_KAZZAK_NAME			= "Lord Kazzak";

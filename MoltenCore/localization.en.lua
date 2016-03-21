@@ -1,4 +1,3 @@
-
 -- 1. Lucifron
 LVBM_LUCIFRON_NAME					= "Lucifron";
 LVBM_LUCIFRON_INFO					= "Announces Lucifron's curse and Impending Doom.";
@@ -8,6 +7,8 @@ LVBM_LUCIFRON_CURSE_WARNING			= "*** Curse - next in 20 sec ***";
 LVBM_LUCIFRON_DOOM_WARNING			= "*** Impending Doom - next in 20 sec ***";
 LVBM_LUCIFRON_CURSE_REGEXP			= "(%w+) is afflicted by Lucifron's Curse.";
 LVBM_LUCIFRON_DOOM_REGEXP			= "(%w+) is afflicted by Impending Doom.";
+LVBM_LUCIFRON_CURSE_REGEXP_YOU		= "You are afflicted by Lucifron's Curse.";
+LVBM_LUCIFRON_DOOM_REGEXP_YOU		= "You are afflicted by Impending Doom.";
 
 -- 2. Magmadar
 LVBM_MAGMADAR_NAME				= "Magmadar";
@@ -17,7 +18,8 @@ LVBM_MAGMADAR_FRENZY_WARNING	= "*** Frenzy ***";
 LVBM_MAGMADAR_FEAR_WARNING1		= "*** Fear - next in 30 seconds ***";
 LVBM_MAGMADAR_FEAR_WARNING2		= "*** Fear in 5 sec ***";
 LVBM_MAGMADAR_FRENZY 			= "%s goes into a killing frenzy!";
-LVBM_MAGMADAR_FEAR				= "(%w+) is afflicted by Panic.";
+LVBM_MAGMADAR_FEAR				= "%w+ is afflicted by Panic.";
+LVBM_MAGMADAR_FEAR_YOU			= "You are afflicted by Panic.";
 
 -- 3. Gehennas
 LVBM_GEHENNAS_NAME				= "Gehennas";
@@ -37,6 +39,7 @@ LVBM_BARON_SET_ICON			= "Set icon";
 LVBM_BARON_BOMB_WHISPER		= "You are the bomb!";
 LVBM_BARON_BOMB_WARNING    	= "*** %s is the bomb ***";
 LVBM_BARON_INFERNO_WARNING	= "*** Inferno ***";
+LVBM_BARON_INFERNO_HEADSUP	= "*** Inferno in %s sec ***";
 LVBM_BARON_BOMB_REGEXP	 	= "([^%s]+) (%w+) afflicted by Living Bomb.";
 LVBM_BARON_INFERNO			= "Baron Geddon gains Inferno.";
 
@@ -51,6 +54,7 @@ LVBM_SHAZZRAH_CURSE_SOON_WARNING	= "*** Curse in %s sec ***";
 LVBM_SHAZZRAH_BLINK		 			= "Shazzrah gains Blink.";
 LVBM_SHAZZRAH_DEADEN_MAGIC			= "Shazzrah gains Deaden Magic.";
 LVBM_SHAZZRAH_CURSE_REGEXP			= "(%w+) is afflicted by Shazzrah's Curse.";
+LVBM_SHAZZRAH_TELEPORT_WARNING		= "*** Blink in %s sec ***";
 
 -- 7. Sulfuron
 LVBM_SULFURON_NAME	= "Sulfuron Harbinger";
@@ -84,4 +88,9 @@ LVBM_RAGNAROS_HITS			= "Ragnaros ([hitscr]+) ([^%s]+) for (%d+)";
 LVBM_RAGNAROS_WRATH	 		= "TASTE THE FLAMES OF SULFURON!";
 LVBM_RAGNAROS_SUBMERGE 		= "COME FORTH, MY SERVANTS! DEFEND YOUR MASTER!";
 
+-- 11. Runes
+LVBM_RUNES_NAME				= "Runes";
+LVBM_RUNES_INFO				= "Lists all not dowsed runes";
+LVBM_DOWSED_RUNE_REGEXP		= "Ich habe die Rune von (%w+) gel";
+LVBM_RUNES_SHOW_FRAME		= "Show frame";
 

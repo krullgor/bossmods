@@ -22,6 +22,7 @@ if (GetLocale() == "deDE") then
 	LVBM_MARLI_SPIDER_ANNOUNCE	= "*** Spinnen gespawned ***";
 	
 	-- Bloodlord Mandokir
+	LVBM_MANDOKIR_AGGRO				= "Ich werde Hakkar eure Seelen zum Fra\195\159 vorwerfen!";
 	LVBM_MANDOKIR_INFO		= "Warnt Spieler, die von Blutf\195\188rst Mandokir beobachtet werden.";
 	LVBM_MANDOKIR_WATCH_EXPR	= "([^%s]+)! Ich behalte Euch im Auge!";
 	LVBM_MANDOKIR_WATCH_ANNOUNCE	= "*** %s wird beobachtet ***";
@@ -29,6 +30,9 @@ if (GetLocale() == "deDE") then
 	LVBM_MANDOKIR_WHISPER_INFO	= "Whisper verschicken";
 	LVBM_MANDOKIR_WHISPER_TEXT	= "Du wirst beobachtet!";
 	LVBM_MANDOKIR_SELFWARN		= "Du wirst beobachtet!";
+	LVBM_MANDOKIR_WARN_WATCH		= "*** Beobachten in %s Sek ***";
+	LVBM_MANDOKIR_WARN_CLEAVE		= "*** Spalten in %s Sek ***";
+	LVBM_MANDOKIR_WARN_WHIRLWIND	= "*** Wirbelwind in %s Sek ***";
 	
 	-- Thekal - eg heal ability
 	
